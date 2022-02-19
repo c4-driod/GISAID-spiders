@@ -1,6 +1,6 @@
 # GISAID-spider
-基于selenium的python爬虫，能够自动识别验证码  
-Selenium spiders for GISAID, which have the ability of automatically recognizing captcha.
+这是基于selenium的python爬虫，能够自动识别验证码  
+These scripts are selenium spiders for GISAID, which have the ability of automatically recognizing captcha.
 ## GISEND
 用于爬取GISAID病例数据  
 **下载GISEND.zip，解压后点击gui.py->开始设置->进行爬虫**  
