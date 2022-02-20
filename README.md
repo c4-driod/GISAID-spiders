@@ -12,7 +12,7 @@ These scripts are python spiders. To run them, Chrome & Some python packages are
 步骤为：DOS窗口依次输入：“pip install”+“空格”+以上包名之一  
 4.下载GISEND.zip->解压->运行gui.py->开始爬虫  
   
-**This Script is used for getting GISAID patient data.**  
+**This Script is used for getting GISAID EpiCoV patient data full-automatically. "w/patient" checkbox is checked by default. It can recognize GISAID captcha automatically.**  
 Steps:   
 1.install Chrome browser;  
 2.install Python3.  
@@ -29,7 +29,7 @@ Steps: Enter "pip install xxx" in DOS window.
 步骤为：DOS窗口输入：“pip install selenium” 
 4.下载GISEND.zip->解压->运行gui.py->开始爬虫  
   
-**This Script is used for getting GISAID fasta data.**  
+**This Script is used for getting GISAID EpiCoV fasta data full-automatically.**  
 Steps:   
 1.install Chrome browser;  
 2.install Python3.  
