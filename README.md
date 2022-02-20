@@ -37,3 +37,17 @@ Steps:
 Steps: Enter "pip install selenium" in DOS window.  
 4.download GISFASTA.zip->unzip->run "gui.py"->start spider.  
 
+## 其他
+"OCR.py" 和 "CharsPrecise.py"是验证码识别接口，不需要下载，它们已经包含在"GISEND.zip"文件里了。放在外面是方面查看和单独下载。 
+接口为CharOcr类的Ocr(png_filename)方法，它能识别GISAID的验证码，将会返回结果字符串.  
+示例：  
+from time import time  
+from Ocr import CharOcr  
+  
+ocr = CharOcr()  
+t1 = time.time()  
+ans = ocr.Ocr('test4.png')  
+t2 = time.time()  
+print('用时：', t2 - t1, 's')  
+print(ans)  
+
