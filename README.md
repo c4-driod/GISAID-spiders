@@ -5,7 +5,7 @@ These scripts are python spiders. To run them, Chrome & Some python packages are
 
 ## GISEND (GISEND.zip)
 **功能：全自动爬取GISAID EpiCoV病例数据，默认勾选“w/patient”，能够自动识别GISAID的验证码**  
-步骤： 
+步骤：  
 1.提前安装好Chrome浏览器（谷歌浏览器）；  
 2.安装python3；  
 3.安装scikit-image、selenium、pillow包：  
@@ -22,7 +22,7 @@ Steps: Enter "pip install xxx" in DOS window.
 
 ## GISFASTA (GISFASTA.zip)
 **功能：全自动爬取GISAID EpiCoV里的 fasta数据**  
-步骤：
+步骤：  
 1.提前安装好Chrome浏览器（谷歌浏览器）；  
 2.安装python3；  
 3.安装selenium包：  
