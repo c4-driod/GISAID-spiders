@@ -99,16 +99,6 @@ def Select_all():
     sela.click()
 
 
-def FindPatientNums():
-    #  返回项目总数
-    total_num_xpath = '/html/body/form/div[5]/div/div[2]/div/div[2]/div[2]/div[2]/div[1]/span/span'
-    total_num_str = d.find_element_by_xpath(total_num_xpath).text
-    #
-    total_num = total_num_str[7:-8].replace(',', '')
-    # print('共',total_num,'个病例')
-    return int(total_num)
-
-
 def GetWeb():
     d.get('https://www.epicov.org/epi3/frontend')
     time.sleep(1)
@@ -283,7 +273,7 @@ def download_less_than_xdays(start_date, end_date):
         # 没有找到进度
         # 复制序列号文本
         SwitchToIframe()
-        text_area = d.find_element_by_xpath(accession_num_textarea)
+        text_area = Keep(d.find_element_by_xpath, accession_num_textarea)
         text = text_area.text
         # print('text_area文本：{}'.format(text))
         SwitchToDefault()
@@ -299,7 +289,7 @@ def download_less_than_xdays(start_date, end_date):
     for ac_nums_str in ac_num_analysis.get():
         SwitchToIframe()
         # 清空序列号区域
-        text_area = d.find_element_by_xpath(accession_num_textarea)
+        text_area = Keep(d.find_element_by_xpath, accession_num_textarea)
         text_area.clear()
         wait_one_timer()
         # 输入对应序列
