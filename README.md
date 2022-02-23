@@ -27,7 +27,7 @@ Steps: Enter "pip install xxx" in DOS window.
 2.安装python3；  
 3.安装selenium包：  
 步骤为：DOS窗口输入：“pip install selenium” 
-4.下载gis_fasta.zip->解压->运行start_gui.py->开始爬虫  
+4.下载gis_fasta.zip->解压->运行start_gui.py->开始爬虫（注备：遇到元素无法找到的报错，请将等待时间延长）  
   
 **This Script is used for getting GISAID EpiCoV fasta data full-automatically.**  
 Steps:   
