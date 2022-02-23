@@ -60,6 +60,8 @@ def Keep(exe, *args, times=120):
     global signal
     while True:
         set_breakpoint()
+        if if_terminate:
+            return
         signal = True
         counter += 1
         try:
@@ -257,6 +259,7 @@ def getDownLoadedFileName(driver, waitTime):
 
         time.sleep(5)
         if time.time() > endTime:
+            driver.switch_to.window(driver.window_handles[0])
             return ''
     driver.switch_to.window(driver.window_handles[0])
     return fname
