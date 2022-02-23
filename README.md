@@ -20,14 +20,14 @@ Steps:
 Steps: Enter "pip install xxx" in DOS window.  
 4.download GISEND.zip->unzip->run "gui.py"->start spider.  
 
-## GISFASTA (GISFASTA.zip)
+## GISFASTA (gis_fasta.zip)
 **功能：全自动爬取GISAID EpiCoV里的 fasta数据**  
 步骤：  
 1.提前安装好Chrome浏览器（谷歌浏览器）；  
 2.安装python3；  
 3.安装selenium包：  
 步骤为：DOS窗口输入：“pip install selenium” 
-4.下载GISEND.zip->解压->运行gui.py->开始爬虫  
+4.下载gis_fasta.zip->解压->运行start_gui.py->开始爬虫  
   
 **This Script is used for getting GISAID EpiCoV fasta data full-automatically.**  
 Steps:   
@@ -35,7 +35,7 @@ Steps:
 2.install Python3.  
 3.install python package selenium.  
 Steps: Enter "pip install selenium" in DOS window.  
-4.download GISFASTA.zip->unzip->run "gui.py"->start spider.  
+4.download gis_fasta.zip->unzip->run "start_gui.py"->start spider.  
 
 ## 其他
 "OCR.py" 和 "CharsPrecise.py"是验证码识别接口，不需要下载，它们已经包含在"GISEND.zip"文件里了。放在外面是方面查看和单独下载。 
