@@ -1,5 +1,5 @@
 # GISAID-spider
-这是我完成的python爬虫，需要谷歌浏览器+一些python软件包才能运行。  
+这是基于selenium的python爬虫，需要谷歌浏览器+一些python软件包运行。  
   
 These scripts are python spiders. To run them, Chrome & Some python packages are needed.  
 
