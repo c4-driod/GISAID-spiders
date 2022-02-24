@@ -1,5 +1,5 @@
-from tkinter import *
 from tkinter import messagebox
+from tkinter import *
 from tkinter.ttk import *
 from threading import Thread
 from datetime import datetime, timedelta
@@ -20,13 +20,39 @@ std_font = '微软雅黑 13'
 style = Style()
 style.configure('TLabel', font=std_font)
 style.configure('TButton', font=std_font)
-# 文件储存位置
+# 运行信息文件储存位置
 store_filename = 'last_info.dat'
+# 数据储存文件名 ， 储存为字典对象
+date_filename = 'fasta_accession_num_obj.dat'
+if_need_store_info = True
 
 
 def show_mission_panel():
+    def store_counts_date_info():
+        global if_need_store_info
+        if if_need_store_info:
+            if_need_store_info = False
+
+            ac_nums = gf.ac_num_analysis.ac_nums
+            dates_str = gf.sms_start_date + 'to' + gf.sms_end_date
+            filename = gf.destination_folder + os.sep + date_filename
+            if os.path.exists(filename):
+                with open(filename, 'rb')as f:
+                    try:
+                        info_dict = pickle.load(f)
+                    except:
+                        info_dict = {}
+                if dates_str not in info_dict:
+                    with open(filename, 'wb') as f:
+                        info_dict[dates_str] = ac_nums
+                        pickle.dump(info_dict, f)
+            else:
+                with open(filename, 'wb') as f:
+                    pickle.dump({dates_str: ac_nums}, f)
+
     def get_complete_percentage():
         if gf.ac_num_analysis.full_length:
+            store_counts_date_info()
             cp = (1 - gf.ac_num_analysis.get_length() / gf.ac_num_analysis.full_length) * 100
             cp = round(cp, 2)
         else:
@@ -180,11 +206,18 @@ def spider_start():
     if (not gf.average_wait_time) or int(gf.average_wait_time) < 4:
         warning_info_str += '没有填写等待时间或等待时间过短(<4s)，或填写的不是整数！\n\r'
 
+    def spider_loop():
+        while not gf.if_done:
+            # 转到第一个窗口
+            gf.if_terminate = False
+            gf.d.switch_to.window(gf.d.window_handles[0])
+            gf.start()
+
     if warning_info_str:
         messagebox.showwarning(title='爬虫不能开始的原因', message=warning_info_str)
     else:
         store_info()
-        Thread(target=gf.start, daemon=True).start()
+        Thread(target=spider_loop, daemon=True).start()
         r.withdraw()
         show_mission_panel()
 

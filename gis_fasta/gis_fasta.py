@@ -180,8 +180,8 @@ def download_fasta(filename):
     Keep(click, download2)
     time.sleep(5)
     SwitchToDefault()
-    # 10分钟无反应，默认网络错误
-    fn = getDownLoadedFileName(d, 600)
+    # 16分钟无反应，默认网络错误
+    fn = getDownLoadedFileName(d, 1000)
     print('filename:{}'.format(fn))
     print('下载结束')
     if fn == '':
@@ -287,6 +287,8 @@ def download_less_than_xdays(start_date, end_date):
     print('共{}个序列'.format(str(ac_num_analysis.full_length)))
     # 按拆分结果下载
     for ac_nums_str in ac_num_analysis.get():
+        if if_terminate:
+            return
         SwitchToIframe()
         # 清空序列号区域
         text_area = Keep(d.find_element_by_xpath, accession_num_textarea)
@@ -356,6 +358,8 @@ def start():
     global mission_now
     # 依次爬取每个分段
     for mission in mission_list:
+        if if_terminate:
+            return
         mission_now = mission[:]
         download_less_than_xdays(mission[0], mission[1])
     global if_done
