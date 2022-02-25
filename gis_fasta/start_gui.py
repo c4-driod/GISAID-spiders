@@ -73,8 +73,6 @@ def show_mission_panel():
     def auto_update():
         sep_time = 1
         t1 = time.time()
-        # 标志，用于更新t1
-        last_cp = 0
         while True:
             # 获取当前的日期对
             date_pair = get_current_date_pair()
@@ -82,9 +80,6 @@ def show_mission_panel():
             date_pair_str = 'to'.join(date_pair)
             # 获取完成百分比
             cp = get_complete_percentage()
-            if cp < last_cp:
-                t1 = time.time()
-            last_cp = cp
             # 初始化sub_time
             sub_time = timedelta(seconds=0)
             if cp >= 0.5:
