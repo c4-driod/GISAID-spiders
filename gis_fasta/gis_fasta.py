@@ -256,21 +256,21 @@ def getDownLoadedFileName(driver, waitTime):
 
 
 def download_less_than_xdays(start_date, end_date):
-    # 输入日期
-    Submission_date(start_date, end_date)
-    # 等待
-    wait_one_timer(average_wait_time*2)
-    # 点击全选
-    Keep(Select_all)
-    # 等待
-    wait_one_timer(average_wait_time*1.5)
-    # 点击select
-    Keep(click, select_bt_path)
-    # 等待
-    wait_one_timer()
     adv = get_advance(start_date + 'to' + end_date)
     if adv is None:
         # 没有找到进度
+        # 输入日期
+        Submission_date(start_date, end_date)
+        # 等待
+        wait_one_timer(average_wait_time*2)
+        # 点击全选
+        Keep(Select_all)
+        # 等待
+        wait_one_timer(average_wait_time*1.5)
+        # 点击select
+        Keep(click, select_bt_path)
+        # 等待
+        wait_one_timer()
         # 复制序列号文本
         SwitchToIframe()
         text_area = Keep(d.find_element_by_xpath, accession_num_textarea)
@@ -278,10 +278,26 @@ def download_less_than_xdays(start_date, end_date):
         # print('text_area文本：{}'.format(text))
         SwitchToDefault()
         print('找到序列号：{}...'.format(text[:15]))
-    else:
+    elif adv:
         # 有进度，断点继续
         text = adv  # nums_list
         print('断点继续')
+        # 输入日期
+        Submission_date(start_date, end_date)
+        # 等待
+        wait_one_timer(average_wait_time*2)
+        # 点击全选
+        Keep(Select_all)
+        # 等待
+        wait_one_timer(average_wait_time*1.5)
+        # 点击select
+        Keep(click, select_bt_path)
+        # 等待
+        wait_one_timer()
+        # 复制序列号文本
+    else:
+        print('已完成，跳过')
+        return
     # 分析序列号，进行拆分
     ac_num_analysis.refresh(text)
     print('共{}个序列'.format(str(ac_num_analysis.full_length)))
