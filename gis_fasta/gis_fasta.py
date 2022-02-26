@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 from datetime import *
 import random
 import os

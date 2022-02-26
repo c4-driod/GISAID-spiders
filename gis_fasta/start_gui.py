@@ -34,7 +34,7 @@ def show_mission_panel():
             if_need_store_info = False
 
             ac_nums = gf.ac_num_analysis.ac_nums
-            dates_str = gf.sms_start_date + 'to' + gf.sms_end_date
+            dates_str = gf.mission_now[0] + 'to' + gf.mission_now[1]
             filename = gf.destination_folder + os.sep + date_filename
             if os.path.exists(filename):
                 with open(filename, 'rb')as f:
