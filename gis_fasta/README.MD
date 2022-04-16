@@ -1,2 +1,2 @@
-# 点击start_gui.py开始运行
+# 双击start_gui.py开始运行
 
