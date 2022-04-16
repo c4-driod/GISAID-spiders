@@ -20,6 +20,8 @@ std_font = '微软雅黑 13'
 style = Style()
 style.configure('TLabel', font=std_font)
 style.configure('TButton', font=std_font)
+style.configure('G.TButton', font=std_font, foreground='green')
+style.configure('R.TButton', font=std_font, foreground='red')
 # 运行信息文件储存位置
 store_filename = 'last_info.dat'
 # 数据储存文件名 ， 储存为字典对象
@@ -120,7 +122,7 @@ def show_mission_panel():
 
 
 def store_info():
-    info_list = [e1.get(), e2.get(), e3.get(), e4.get(), e5.get(), e6.get(), e7.get()]
+    info_list = [e1.get(), e2.get(), e3.get(), e4.get(), e5.get(), get_b6_value()]
     with open(store_filename, 'wb') as f:
         pickle.dump(info_list, f)
 
@@ -134,9 +136,12 @@ def load_info():
             e2.insert(0, info_list[1])
             e3.insert(0, info_list[2])
             e4.insert(0, info_list[3])
+            e5.delete(0, END)
             e5.insert(0, info_list[4])
-            e6.insert(0, info_list[5])
-            e7.insert(0, info_list[6])
+            if info_list[5]:
+                b6.config(text='是', style='G.TButton')
+            else:
+                b6.config(text='否', style='R.TButton')
             return True
         except:
             print('{}文件损坏'.format(store_filename))
@@ -152,13 +157,19 @@ def if_right_date_str(date_str):
         return False
 
 
-def if_right_path_str(path_str):
+def if_right_path_str(path_str, if_new):
     try:
         # 去除最右边的文件分隔符
         path_str.rstrip('\\')
         path_str.rstrip('/')
         # 判断该文件夹是否存在
-        os.path.isdir(path_str)
+        if os.path.isdir(path_str):
+            pass
+        elif if_new:
+            os.mkdir(path_str)
+            print('不存在该文件夹，已新建')
+        else:
+            return False
         return path_str
     except:
         return False
@@ -176,19 +187,29 @@ def fill_in_last_info():
         messagebox.showinfo(title='提醒', message='找不到上一次的信息')
 
 
+def b6_click():
+    if b6.cget('text') == '是':
+        b6.config(text='否', style='R.TButton')
+    else:
+        b6.config(text='是', style='G.TButton')
+
+
+def get_b6_value():
+    return b6.cget('text') == '是'
+
+
 def spider_start():
     # 获取参数
     spider_args = [e1.get(), e2.get(), if_right_date_str(e3.get()), if_right_date_str(e4.get()),
-                   if_right_path_str(e5.get()), if_right_path_str(e6.get()), if_right_num_str(e7.get())]
+                   if_right_path_str(e5.get(), True), get_b6_value()]
     print('爬虫参数：', spider_args)
 
     gf.login_name = spider_args[0]
     gf.login_password = spider_args[1]
     gf.sms_start_date = spider_args[2]
     gf.sms_end_date = spider_args[3]
-    gf.default_folder = spider_args[4]
-    gf.destination_folder = spider_args[5]
-    gf.average_wait_time = spider_args[6]
+    gf.destination_folder = spider_args[4]
+    gf.if_headless = spider_args[5]
 
     warning_info_str = ''
     if not gf.login_name:
@@ -199,18 +220,13 @@ def spider_start():
         warning_info_str += '没有填写或填写了格式错误的开始日期(submission start date)!\n\r'
     if not gf.sms_end_date:
         warning_info_str += '没有填写或填写了格式错误的终止日期(submission end date)!\n\r'
-    if not gf.default_folder:
-        warning_info_str += '没有填写或填写了格式错误的Chrome默认下载路径！\n\r'
     if not gf.destination_folder:
         warning_info_str += '没有填写或填写了格式错误的目标文件夹路径！\n\r'
-    if (not gf.average_wait_time) or int(gf.average_wait_time) < 4:
-        warning_info_str += '没有填写等待时间或等待时间过短(<4s)，或填写的不是整数！\n\r'
 
     def spider_loop():
         while not gf.if_done:
-            # 转到第一个窗口
+            # 上一个爬虫线程出错，开启新一个线程
             gf.if_terminate = False
-            gf.d.switch_to.window(gf.d.window_handles[0])
             gf.start()
 
     if warning_info_str:
@@ -232,25 +248,23 @@ Label(iframe, text='Name', style='TLabel').grid(row=0, column=0, pady=pady)
 Label(iframe, text='Password', style='TLabel').grid(row=1, column=0, pady=pady)
 Label(iframe, text='Submission start date', style='TLabel').grid(row=2, column=0, pady=pady)
 Label(iframe, text='Submission end date', style='TLabel').grid(row=3, column=0, pady=pady)
-Label(iframe, text='浏览器的默认下载位置', style='TLabel').grid(row=4, column=0, pady=pady)
-Label(iframe, text='文件存放目标位置', style='TLabel').grid(row=5, column=0, pady=pady)
-Label(iframe, text='最少等待时长（秒）', style='TLabel').grid(row=6, column=0, pady=pady)
+Label(iframe, text='文件存放目标位置', style='TLabel').grid(row=4, column=0, pady=pady)
+Label(iframe, text='不显示浏览器', style='TLabel').grid(row=5, column=0, pady=pady)
+
 
 e1 = Entry(iframe, font=std_font)
 e2 = Entry(iframe, font=std_font)
 e3 = Entry(iframe, font=std_font)
 e4 = Entry(iframe, font=std_font)
 e5 = Entry(iframe, font=std_font)
-e6 = Entry(iframe, font=std_font)
-e7 = Entry(iframe, font=std_font)
+b6 = Button(iframe, text='是', style='G.TButton', command=b6_click)
 
 e1.grid(row=0, column=1, pady=pady, sticky='wens')
 e2.grid(row=1, column=1, pady=pady, sticky='wens')
 e3.grid(row=2, column=1, pady=pady, sticky='wens')
 e4.grid(row=3, column=1, pady=pady, sticky='wens')
 e5.grid(row=4, column=1, pady=pady, sticky='wens')
-e6.grid(row=5, column=1, pady=pady, sticky='wens')
-e7.grid(row=6, column=1, pady=pady, sticky='wens')
+b6.grid(row=5, column=1, pady=pady, sticky='wens')
 
 set_frame = Frame(r)
 set_frame.pack(fill=BOTH, expand=True)
@@ -261,10 +275,8 @@ b2 = Button(set_frame, text='开始', style='TButton', command=spider_start) \
 
 menu = Menu(r)
 
-tips = '1. 默认下载位置一般在C:\\Users\\你的用户名\\downloads下\n' \
-       '2. 日期只支持year-month-day的形式\n' \
-       '3. 最少等待时间控制着脚本的速度，请根据自己的网速选择，太少可能被封号，国内一般6s比较合适\n' \
-       '4. 只要输入的两个日期不变，程序就能断点继续，想重新开始请删除advance文件夹内的对应日期范围文件\n\n' \
+tips = '1. 日期只支持year-month-day的形式\n' \
+       '2. 只要输入的两个日期不变，程序就能断点继续，想重新开始请删除advance文件夹内的对应日期范围文件\n\n' \
        '更多内容请访问https://www.cnblogs.com/roundfish/'
 about = '作者：cquxiaoy\n本脚本完全免费\n\n' \
         '更多内容请访问https://www.cnblogs.com/roundfish/'

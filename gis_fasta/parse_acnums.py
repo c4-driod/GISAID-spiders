@@ -44,8 +44,8 @@ def transform_to_nums(ac_str):
         # 将数字字符串转为整数对
         num_pair = str_to_num_pair(item)
         sub = num_pair[1] - num_pair[0] + 1
-        if sub > 10000:
-            # 处理差值大于10000的数对，将其分成多个小于等于10000的数对
+        if sub > 5000:
+            # 处理差值大于5000的数对，将其分成多个小于等于10000的数对
             for i in range(int(sub/10000)):
                 ac_list2 += [num_pair[0]+10000*i, num_pair[0]+10000*(i+1)-1]
             else:
@@ -71,7 +71,7 @@ class AcNumAnalysis:
         self.full_length = self.get_length()
 
     def analysis(self):
-        # 分析，并输出最靠前的总和10000以内的数对集
+        # 分析，并输出最靠前的总和5000以内的数对集
         count = 0
         # 记录加入的数
         nums_to_remove = []
@@ -80,11 +80,11 @@ class AcNumAnalysis:
             new_num_pair = [self.ac_nums[2*i], self.ac_nums[2*i + 1]]
             sub = new_num_pair[1] - new_num_pair[0] + 1
 
-            if count + sub <= 10000:
+            if count + sub <= 5000:
                 count += sub
                 nums_to_remove += new_num_pair
                 # print('sub:{2}={1}-{0}'.format(new_num_pair[0], new_num_pair[1], sub))
-                if count > 9900:
+                if count > 4900:
                     break
         print('输出{}个序列'.format(count))
 
