@@ -1,7 +1,7 @@
 # GISAID-spider
-这是基于selenium的python爬虫，需要谷歌浏览器+一些python软件包运行。  
+这是基于selenium的python爬虫，需要谷歌/**火狐**浏览器+一些python软件包运行。  
   
-These scripts are python spiders. To run them, Chrome & Some python packages are needed.  
+These scripts are python spiders. To run them, Chrome / **Firefox** & Some python packages are needed.  
 
 ## GISEND  
 **功能：全自动爬取GISAID EpiCoV病例数据，默认勾选“w/patient”，能够自动识别GISAID的验证码**  
