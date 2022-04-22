@@ -4,15 +4,17 @@
 需要的软件包：  
 GISEND: selenium, pillow, scikit-image  
 GISFASTA: selenium  
+用pip命令安装
   
 These scripts are python spiders. 
 To run them, Chrome / **Firefox** & selenium webdrivers(chromedriver.exe-Chrome/geckodriver.exe-Firefox) & Some python packages are needed.  
 packages：  
 GISEND: selenium, pillow, scikit-image  
 GISFASTA: selenium  
+use pip  
 
 ## GISEND  
-**功能：全自动爬取GISAID EpiCoV病例数据，默认勾选“w/patient”，能够自动识别GISAID的验证码**  
+**功能：全自动获取GISAID EpiCoV病例数据，默认勾选“w/patient”，能够自动识别GISAID的验证码**  
 步骤：  
 1.提前安装好Chrome浏览器（谷歌浏览器）,把chromedriver.exe放入脚本所在路径；  
 2.运行gui.py->开始爬虫  
@@ -23,7 +25,7 @@ Steps:
 2.run "gui.py"->start spider.  
 
 ## GISFASTA  
-**功能：全自动爬取GISAID EpiCoV里的 fasta数据（用火狐）**  
+**功能：用火狐全自动获取GISAID EpiCoV里的 fasta数据**  
 步骤：  
 1.提前安装好火狐浏览器,把geckodriver.exe放入脚本所在路径；  
 2.运行start_gui.py->开始爬虫
