@@ -1,4 +1,4 @@
-# GISAID-spider
+# GISAID-spider（非常非常非常抱歉，这两个爬虫目前都有bug，不能正常使用，维护可能要等到2022.5.28以后进行）
 这是基于selenium的python爬虫.
 需要谷歌/**火狐**浏览器+webdriver（chromedriver.exe-谷歌/geckodriver.exe-火狐）+一些python软件包。  
 用pip命令安装需要的软件包：  
