@@ -1,12 +1,14 @@
 # GISAID downloader GISAID数据爬虫（下载器）
 基于selenium，用于全自动下载GISAID数据
-需要火狐浏览器或者谷歌浏览器（谷歌开无界面会被服务器拒绝）
+需要火狐浏览器或者谷歌浏览器（谷歌开无界面会被服务器拒绝），默认用火狐浏览器，需要geckodriver.exe。
+可以使用命令行（示例如下）或者用户操作界面（start.py）
 ## 示例
 ### 下载metadata和fasta
-1.
 python gisaid_downloader -n 这里填你的账号名 -p 这里填密码 -f 这里填csv文件
-
-全部参数：
+### 下载metadata、fasta和病例数据
+python gisaid_downloader -n name -p password -f xx.csv -dr 2 4
+---
+全部参数信息：
 -n NAME, --name NAME  账号名
   -p PASSWORD, --password PASSWORD
                         密码
