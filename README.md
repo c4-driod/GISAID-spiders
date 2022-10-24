@@ -6,7 +6,8 @@
   2.安装火狐浏览器； \
   3.安装Python第三方包selenium； \
 可以使用命令行（示例如下）或者用户操作界面（start.py）进行操作\
-能够在linux、windows、mac下运行
+能够在linux、windows、mac下运行\
+感谢大佬的资助，爬虫得以完成
 ## 示例
 ### 下载metadata和fasta
 python gisaid_downloader -n 这里填你的账号名 -p 这里填密码 -f 这里填csv文件
