@@ -15,7 +15,7 @@ python gisaid_downloader -n 这里填你的账号名 -p 这里填密码 -f 这�
 python gisaid_downloader -n name -p password -f xx.csv -dr 2 4
 
 ---
-全部参数信息：　　\
+## 所有参数
 -n NAME, --name NAME  账号名\
   -p PASSWORD, --password PASSWORD\
                         密码\
