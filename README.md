@@ -9,6 +9,11 @@
 可以使用**命令行**（如下）或者**用户操作界面**（start.py）进行操作;\
 能够在linux、windows、mac下运行;\
 感谢大佬的资助，项目得以完成.
+---
+## 功能
+1.全自动下载一些基础数据
+2.断点续下（如果想重新下，可以把advance文件夹里对应名字的json文件删除）
+---
 ## 示例
 ### 下载metadata和fasta
 python gisaid_downloader -n 这里填你的账号名 -p 这里填密码 -f 这里填csv文件
