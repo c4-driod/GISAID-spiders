@@ -7,8 +7,10 @@
   * 安装Python第三方包**selenium**； 
 
 可以使用**命令行**（如下）或者**用户操作界面**（start.py）进行操作;\
-能够在linux、windows、mac下运行;\
-感谢大佬的资助，项目得以完成.
+
+打包好的exe程序在gisaid_downloader.zip内，windows下可以直接使用。
+
+感谢大佬的资助，项目得以完成。
 
 ---
 ## 功能
