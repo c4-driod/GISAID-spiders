@@ -6,7 +6,7 @@
   * 安装**火狐浏览器**； 
   * 安装Python第三方包**selenium**； 
 
-可以使用**命令行**（如下）或者**用户操作界面**（start.py）进行操作;\
+可以使用**命令行**（如下）或者**用户操作界面**（start.py、gisaid_downloader.zip内的gisaid下载器.exe）进行操作;
 
 打包好的exe程序在gisaid_downloader.zip内，windows下可以直接使用。
 
