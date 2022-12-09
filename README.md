@@ -11,9 +11,9 @@ Based on selenium, aiming at download GISAID data automatically.
 
 有两种使用方式：  
 1. **命令行**（教程在下方）  
-2. **界面程序**（start.py或者gisaid_downloader.zip内的 gisaid下载器.exe ）;
+2. **界面程序**（ start.py 或者 gisaid下载器.exe ）;
 
-打包好的exe程序在gisaid_downloader.zip内，windows下可以直接使用。
+打包好的“gisaid下载器exe”程序在gisaid_downloader.zip内，windows下可以直接解压使用。
 
 感谢大佬的资助，项目得以完成。
 
