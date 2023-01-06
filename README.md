@@ -8,7 +8,7 @@ Based on selenium, aiming at download GISAID data automatically.
 ---
 需要火狐浏览器或者谷歌浏览器（谷歌开无界面会被服务器拒绝），默认用火狐浏览器。\
 使用火狐，需要准备： 
-  * **geckodriver.exe**（已加入目录，也可以自行百度、下载并把文件放在脚本同文件夹下）； 
+  * **geckodriver**（Windows版已加入目录，也可以自行百度、下载并把文件放在脚本同文件夹下）； 
   * 安装**火狐浏览器**； 
   * 安装Python第三方包**selenium**； 
 
