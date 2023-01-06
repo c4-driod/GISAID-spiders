@@ -1,4 +1,8 @@
 # GISAID downloader GISAID数据爬虫（附界面程序）
+
+[Windows版本](https://github.com/c4-driod/GISAID-spiders/releases/tag/gisaid_spiders)
+[Windows版本压缩包下载](https://github.com/c4-driod/GISAID-spiders/releases/download/gisaid_spiders/gisaid_downloader.zip)
+
 **基于selenium，用于全自动下载GISAID数据.**  \
 Based on selenium, aiming at download GISAID data automatically.
 
