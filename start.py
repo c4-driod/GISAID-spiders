@@ -26,15 +26,20 @@ def start_download():
     name = e1.get()
     password = e2.get()
     filename = en.get()
+    if_retain_raw_data = retain_data_bt.cget('text') == '√'
+    if_not_merge_data = merge_data_bt.cget('text') != '√'
+
     try:
         spider_loop(
             name=name,
             password=password,
             mission_file=filename,
-            is_gui=eb.cget('text')=='√',
+            is_gui=eb.cget('text') == '√',
             download_ranks=[
-                blist.index(i) for i in blist if i.cget('text')=='√'
+                blist.index(i) for i in blist if i.cget('text') == '√'
             ],
+            retain_raw_data=if_retain_raw_data,
+            not_merge_data=if_not_merge_data,
         )
     except:
         r.title('gisaid 数据下载（信息填写错误）')
@@ -85,10 +90,28 @@ f2.columnconfigure(1, weight=1)
 
 f3 = Frame(r)
 Label(f3, text='是否开启界面', font=font).grid(row=0, column=0)
-eb = Button(f3, text=' ', font=font, relief='solid', command=lambda:mb(eb))
+
+eb = Button(f3, text=' ', font=font, relief='solid', command=lambda: mb(eb))
+
 eb.grid(row=0, column=1, sticky='we')
+
 f3.columnconfigure(1, weight=1)
 f3.pack(fill=X, expand=True)
+
+f4 = Frame(r)
+
+Label(f4, text='以下选项仅针对Input for the Augur pipeline的数据', font=font).grid(row=0, column=0, columnspan=2)
+Label(f4, text='是否保留原始文件', font=font).grid(row=1, column=0)
+Label(f4, text='是否自动解压、合并文件', font=font).grid(row=2, column=0)
+
+retain_data_bt = Button(f4, text='√', font=font, relief='solid', command=lambda: mb(retain_data_bt))
+retain_data_bt.grid(row=1, column=1, sticky='we')
+
+merge_data_bt = Button(f4, text=' ', font=font, relief='solid', command=lambda: mb(merge_data_bt))
+merge_data_bt.grid(row=2, column=1, sticky='we')
+
+f4.columnconfigure(1, weight=1)
+f4.pack(fill=X, expand=YES)
 
 Button(r, text='开始下载', command=start_download, font=font, relief='solid', bg='tomato').pack(fill=X)
 
