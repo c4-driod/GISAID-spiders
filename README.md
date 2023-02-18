@@ -28,9 +28,9 @@ Based on selenium, aiming at download GISAID data automatically.
 ---
 ## 示例
 ### 下载metadata和fasta
-python gisaid_downloader -n 这里填你的账号名 -p 这里填密码 -f 这里填csv文件
+python gisaid_downloader.py -n 这里填你的账号名 -p 这里填密码 -f 这里填csv文件
 ### 下载metadata、fasta和病例数据
-python gisaid_downloader -n name -p password -f xx.csv -dr 2 4
+python gisaid_downloader.py -n name -p password -f xx.csv -dr 2 4
 
 ---
 ## 注意事项
