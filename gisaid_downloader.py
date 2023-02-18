@@ -240,7 +240,7 @@ def getDownLoadedFileName(driver, waitTime=3000):
             except:
                 print('.', end='')
 
-        time.sleep(0.01)
+        time.sleep(0.01)  # 增加检测次数
         if time.time() > endTime:
             return ''
     driver.switch_to.window(driver.window_handles[0])
@@ -400,7 +400,7 @@ def start(name, password, mission_file='', mission_str='', save_path='./download
 def spider_loop(name, password, mission_file='', mission_str='', save_path='./downloads', is_gui=False, not_merge_data=False, retain_raw_data=False, download_ranks=None, driver='firefox'):
     if not mission_file and not mission_str:
         print('无任务！')
-        return
+        return 1
     while not if_done:
         start(
             name=name,
@@ -429,6 +429,7 @@ python gisaid_downloader.py -n 账号名 -p 密码 -f GISAID_hcov-19_ids_2022_07
 gisaid_fasta_downloader -n 账号名 -p 密码 -f GISAID_hcov-19_ids_2022_07_20_12_50.csv（csv文件名）
 如需要保存原始文件，加入-r参数；
 如不需自动解开tar与合并文件，加入-nm参数；
+
 请注意，如果爬虫卡住，可能是以下原因：
 1.还没下载就卡住了，这种情况很可能是firefox的日志文件导致的（会导致跳过按某些按钮，具体原因不明），删除脚本目录下的geckodriver.log文件一般能解决。
 如果还不能，再试试不开启界面模式，或者多试几次； 

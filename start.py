@@ -28,21 +28,19 @@ def start_download():
     filename = en.get()
     if_retain_raw_data = retain_data_bt.cget('text') == '√'
     if_not_merge_data = merge_data_bt.cget('text') != '√'
-
+    ret = None
     try:
-        spider_loop(
+        ret = spider_loop(
             name=name,
             password=password,
             mission_file=filename,
             is_gui=eb.cget('text') == '√',
-            download_ranks=[
-                blist.index(i) for i in blist if i.cget('text') == '√'
-            ],
+            download_ranks=[blist.index(i) for i in blist if i.cget('text') == '√'],
             retain_raw_data=if_retain_raw_data,
             not_merge_data=if_not_merge_data,
         )
     except:
-        r.title('gisaid 数据下载（信息填写错误）')
+        r.title('gisaid 数据下载' + ('（未分配任务）' if ret else '（出现错误）'))
 
 
 ctypes.windll.shcore.SetProcessDpiAwareness(True)
@@ -74,11 +72,11 @@ Label(f2, text='3.Nucleotide Sequences (FASTA)', font=font).grid(row=5, column=0
 Label(f2, text='4.Patient status metadata', font=font).grid(row=6, column=0)
 Label(f2, text='5.Sequencing technology metadata', font=font).grid(row=7, column=0)
 
-b1 = Button(f2, text=' ', relief='solid', font=font, command=lambda:mb(b1))
-b2 = Button(f2, text='√', relief='solid', font=font, command=lambda:mb(b2))
-b3 = Button(f2, text=' ', relief='solid', font=font, command=lambda:mb(b3))
-b4 = Button(f2, text=' ', relief='solid', font=font, command=lambda:mb(b4))
-b5 = Button(f2, text=' ', relief='solid', font=font, command=lambda:mb(b5))
+b1 = Button(f2, text=' ', relief='solid', font=font, command=lambda: mb(b1))
+b2 = Button(f2, text='√', relief='solid', font=font, command=lambda: mb(b2))
+b3 = Button(f2, text=' ', relief='solid', font=font, command=lambda: mb(b3))
+b4 = Button(f2, text=' ', relief='solid', font=font, command=lambda: mb(b4))
+b5 = Button(f2, text=' ', relief='solid', font=font, command=lambda: mb(b5))
 
 b1.grid(row=3, column=1, sticky='we')
 b2.grid(row=4, column=1, sticky='we')
