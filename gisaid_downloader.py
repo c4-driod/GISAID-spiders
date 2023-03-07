@@ -381,7 +381,7 @@ def start(name, password, mission_file='', mission_str='', save_path='./download
         print('Downloading file %d/%d↓↓↓' % (index+1, len(mission_list)))
         for i in download_ranks:
             #  下载大于等于1个指定类型的数据
-            download_fasta(d, driver, i)
+            download_fasta(d, driver, i + 1)
         if if_terminate:
             d.close()
             return
