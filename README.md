@@ -41,16 +41,16 @@ python gisaid_downloader.py -n name -p password -f xx.csv -dr 2 4
 建议连续下载10小时后休息几小时，再继续下载。
 ### 爬虫卡住了？
 请注意，如果爬虫卡住，可能是以下原因： \
-1.还没下载就卡住了，这种情况很可能是firefox的日志文件导致的（会导致跳过按某些按钮，具体原因不明），删除脚本目录下的geckodriver.log文件一般能解决。
+1.还没下载就卡住了，这种情况很可能是Firefox的日志文件导致的（会导致跳过按某些按钮，具体原因不明），删除脚本目录下的geckodriver.log文件一般能解决。
 如果还不能，再试试不开启界面模式，或者多试几次； \
 2.卡在了下载patient status 的过程中，具体表现就是下载停留在了patient status（dr=4）那一步。 \
 这是因为GISAID网站在处理这个数据（patient status）的时候，如果id一次性非常大（比如5000），将会非常慢（手动下载也会这样）。比较合适的一个值是2000。 \
 第一次下载时使用的dr没有4（即不包含patient status这类数据），爬虫就会把一次性下载的数量设为5000（也就是一次性能下载的最大值）， \
 之后使用的包含了4，还是会按5000一次来下载，所以会卡住。 \
 解决方法： \
-删掉advance文件夹下同名json文件，dr参数值带上4（或者界面上选中patient status下载选项），重新开始下载。
-3.如果你的下载只进行了第一次就一直停着，而且你的系统语言不是**简体中文**或者**英文**，把gisaid_downloader.py代码中“wait_downloaded_filename”函数下的“剩余时间”改成你的火狐浏览器下载时，下载界面进度条上一定会出现的文字，比如繁体的“剩餘時間”（但作者并不清楚是不是这个）。因为代码就是靠检测这段文字是否存在来判断下载是否结束，系统语言不同，没有识别到对应文字，就会认为下载一直没有开始，从而一直等待。 \
-3.If your download just starts once, problem would be the system language. Try to change your Firefox language into English/Simplified Chinese or replace the characters "剩余时间" in file "gisaid_downloader.py" into the characters must appear on your Firefox download bar to fix it. \ 
+删掉advance文件夹下同名json文件，dr参数值带上4（或者界面上选中patient status下载选项），重新开始下载。 \
+3.如果你的下载只进行了第一次就一直停着，而且你的系统语言不是**简体中文**或者**英文**，可以把Firefox的默认语言设置为简体中文/英文，或者如果可行的话，重新以这两种语言安装；也可以把gisaid_downloader.py代码中“wait_downloaded_filename”函数下的“剩余时间”改成你的火狐浏览器下载时，下载界面进度条上一定会出现的文字，比如繁体的“剩餘時間”（但作者并不清楚是不是这个）。因为代码就是靠检测这段文字是否存在来判断下载是否结束，系统语言不同，没有识别到对应文字，就会认为下载一直没有开始，从而一直等待。 \
+3.If your download just starts once, problem would be the system language. Try to change your Firefox language into English/Simplified Chinese or replace the characters "剩余时间" in file "gisaid_downloader.py" into the characters must appear on your Firefox download bar to fix it.  
 
 
 ---
