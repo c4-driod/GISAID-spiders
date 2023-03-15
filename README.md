@@ -49,6 +49,8 @@ python gisaid_downloader.py -n name -p password -f xx.csv -dr 2 4
 之后使用的包含了4，还是会按5000一次来下载，所以会卡住。 \
 解决方法： \
 删掉advance文件夹下同名json文件，dr参数值带上4（或者界面上选中patient status下载选项），重新开始下载。
+3.如果你的下载只进行了第一次就一直停着，而且你的系统语言不是**简体中文**或者**英文**，把gisaid_downloader.py代码中“wait_downloaded_filename”函数下的“剩余时间”改成你的火狐浏览器下载时，下载界面进度条上一定会出现的文字，比如繁体的“剩餘時間”（但作者并不清楚是不是这个）。因为代码就是靠检测这段文字是否存在来判断下载是否结束，系统语言不同，没有识别到对应文字，就会认为下载一直没有开始，从而一直等待。 \
+3.If your download just starts once, problem would be the system language. Try to change your Firefox language into English/Simplified Chinese or replace the characters "剩余时间" in file "gisaid_downloader.py" into the characters must appear on your Firefox download bar to fix it. \ 
 
 
 ---
