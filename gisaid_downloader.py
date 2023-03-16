@@ -462,7 +462,8 @@ argp.add_argument('-dr', '--download_ranks', default=[2, ], nargs='+', type=int,
 
 if __name__ == '__main__':
     args = argp.parse_args()
-    os.chdir(os.path.split(__file__)[0])
+    #os.chdir(os.path.split(__file__)[0])
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     spider_loop(
         name=args.name[0],
         password=args.password[0],
