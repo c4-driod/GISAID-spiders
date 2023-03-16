@@ -90,7 +90,7 @@ class AcNumAnalysis:
             to_return = [self.ac_nums[0], self.ac_nums[0] + self.default_num - 1]
             self.ac_nums[0] = self.ac_nums[0] + self.default_num
             print('\rOutput {} Accession Nums'.format(str(self.default_num)), end='')
-            return num_pairs_to_str(to_return)
+            return num_pairs_to_str(to_return), self.default_num
         for i in range(int(len(self.ac_nums) / 2)):
             new_num_pair = [self.ac_nums[2 * i], self.ac_nums[2 * i + 1]]
             sub = new_num_pair[1] - new_num_pair[0] + 1
@@ -130,7 +130,9 @@ class AcNumAnalysis:
             if not current_num_pair:
                 current_num_pair = [self.ac_nums[2*i], self.ac_nums[2*i+1]]
             else:
-                if self.ac_nums[2*i] == current_num_pair[1] + 1:
+                count = self.ac_nums[2*i+1] - current_num_pair[0] +1
+                if self.ac_nums[2*i] == current_num_pair[1] + 1 and count <= self.default_num:
+                    # continues and in default numbers.
                     current_num_pair[1] = self.ac_nums[2*i+1]
                 else:
                     new_ac_nums += current_num_pair
